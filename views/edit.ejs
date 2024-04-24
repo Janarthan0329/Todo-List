@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Todo</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f0f0f0">
+    <div style="text-align: center; font-size: 32px; color: #333; margin-bottom: 20px;">Todo List</div>
+    <div class="container1"
+        style="width: 80%; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+        <form action="/update/<%= todo.id %>" method="post" style="display: flex; flex-direction: column;">
+            <label for="todo" style="font-size: 18px; margin-bottom: 8px;">Edit Todo:</label>
+            <input type="text" id="todo" name="todo" value="<%= todo.todo %>" required
+                style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 16px;">
+            <button type="submit"
+                style="padding: 10px 20px; font-size: 18px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s; "
+                onmouseover="this.style.backgroundColor='#0056b3'"
+                onmouseout="this.style.backgroundColor='#007bff'">Update</button>
+        </form>
+    </div>
+</body>
+
+</html>
