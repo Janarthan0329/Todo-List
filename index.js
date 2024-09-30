@@ -58,9 +58,9 @@ app.get('/features/clock', (req, res) => {
 });
 
 // Define the calculator route
-app.get('/features/calculator', (req, res) => {
-    console.log('Calculator route accessed');
-    res.render('calculator');
+app.get('/features/culculator', (req, res) => {
+    console.log('culculator route accessed');
+    res.render('culculator');
 });
 
 // Serve the About page
