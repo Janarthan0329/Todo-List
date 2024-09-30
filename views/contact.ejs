@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/CSS/contact.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser/dist/email.min.js"></script>
+</head>
+
+<body>
+     <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h2>My Todo App</h2>
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <a href="/#features">Features</a>
+                <ul class="dropdown">
+                    <li><a href="/features/calendar">Calendar</a></li>
+                    <li><a href="/features/clock">Clock</a></li>
+                    <li><a href="/features/culculator">Culculator</a></li>
+                </ul>
+            </li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#" id="darkModeToggle">Dark Mode</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Contact Us!</h1>
+    </header>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or feedback, feel free to reach out!</p>
+
+        <form id="contact-form" onsubmit="sendEmail(event)">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <div>
+                <button type="submit">Send Message</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Todo List. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const sendEmail = (e) => {
+            e.preventDefault();
+
+            emailjs.sendForm('service_iube2md', 'template_24ya5gn', e.target, {
+                publicKey: 'BbmWzNfsVTZNyc4Th',
+            })
+            .then(
+                () => {
+                    alert('Your message has been sent successfully!');
+                    document.getElementById("contact-form").reset(); // Reset the form
+                },
+                (error) => {
+                    console.error('FAILED...', error);
+                    alert('An error occurred. Please try again later.');
+                }
+            );
+        };
+
+         // Dark mode toggle functionality
+         document.getElementById("darkModeToggle").addEventListener("click", function (event) {
+            event.preventDefault(); 
+            document.body.classList.toggle("dark-mode"); 
+            document.querySelector("nav").classList.toggle("dark-mode"); 
+            
+            // Save user preference in localStorage
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        // Apply saved user preference on page load
+        window.onload = function () {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.querySelector("nav").classList.add("dark-mode");
+            }
+        };
+    </script>
+</body>
+</html>

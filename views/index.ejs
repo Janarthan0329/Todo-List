@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="/CSS/style.css" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h2>My Todo App</h2>
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li>
+                <a href="/#features">Features</a>
+                <ul class="dropdown">
+                    <li><a href="/features/calendar">Calendar</a></li>
+                    <li><a href="/features/clock">Clock</a></li>
+                    <li><a href="/features/culculator">Culculator</a></li>
+                </ul>
+            </li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="#" id="darkModeToggle">Dark Mode</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Stay Organized, Stay Productive!</h1>
+        <p>Manage your tasks efficiently with this simple and intuitive Todo app.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <form action="/" method="post" autocomplete="off">
+            <input type="text" placeholder="Add todos..." name="todoValue" required />
+            <button type="submit">Add</button>
+        </form>
+
+        <% if (todos) { %> <% todos.forEach(todoValue => { %>
+        <div class="todo-container">
+            <div class="todo-value"><%= todoValue.todo %></div>
+            <div>
+                <a href="/edit/<%= todoValue.id %>" class="todo-edit">Edit</a>
+                <a class="todo-delete" data-todo-id="<%= todoValue.id %>">Delete</a>
+            </div>
+        </div>
+        <% }) %> <% } %>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 My Todo App. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+        </ul>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        document.getElementById("darkModeToggle").addEventListener("click", function (event) {
+            event.preventDefault(); 
+            document.body.classList.toggle("dark-mode"); 
+            document.querySelector("nav").classList.toggle("dark-mode"); 
+            
+            // Save user preference in localStorage
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        // Apply saved user preference on page load
+        window.onload = function () {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.querySelector("nav").classList.add("dark-mode");
+            }
+        };
+
+        // Delete functionality using fetch
+        const deleteButtons = document.querySelectorAll(".todo-delete");
+
+        deleteButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const todoId = button.dataset.todoId;
+                const endPoint = `/${todoId}`;
+                fetch(endPoint, {
+                    method: "DELETE",
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            window.location.reload();
+                        } else {
+                            console.error("Failed to delete todo.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

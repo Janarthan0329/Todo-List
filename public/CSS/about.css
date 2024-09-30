@@ -1,0 +1,253 @@
+/* Ensure the body takes full height and behaves as a flex container */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    display: flex;
+    flex-direction: column; /* Stack header, content, and footer */
+}
+
+/* Navigation bar styles */
+nav {
+    background-color: #0051a7;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav .logo h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffdd57;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: auto;
+    z-index: 1;
+}
+
+nav ul li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    display: block;
+    padding: 6px;
+}
+
+.dropdown li a {
+    color: #007bff;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.dropdown li a:hover {
+    background-color: #001eff;
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: linear-gradient(to bottom, rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6));
+    background-size: cover;
+    background-position: center;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 2px solid #007bff;
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+.container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.container p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.container img {
+    width: 500px;
+    height: 500px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.container img:hover {
+    transform: scale(1.05);
+}
+
+
+.container .learn-more {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.container .learn-more:hover {
+    background-color: #0056b3;
+}
+
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; 
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: auto; 
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212; 
+    color: #ffffff; 
+}
+
+nav.dark-mode {
+    background-color: #333; 
+}
+
+.dropdown {
+    background-color: #444; 
+}
+
+.dropdown li a {
+    color: #ffffff; 
+}
+
+/* Header styles */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: linear-gradient(to bottom, rgba(0, 123, 255, 0.8), rgba(0, 123, 255, 0.6));
+    background-size: cover;
+    background-position: center;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 20px;
+}
+
+.container {
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 60px;
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .container {
+    background-color: #1f1f1f; 
+}

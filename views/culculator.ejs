@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="/CSS/culculator.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <h2>My Todo App</h2>
+    </div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li>
+        <a href="/#features">Features</a>
+        <ul class="dropdown">
+          <li><a href="/features/calendar">Calendar</a></li>
+          <li><a href="/features/clock">Clock</a></li>
+          <li><a href="/features/culculator">Culculator</a></li>
+        </ul>
+      </li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="#" id="darkModeToggle">Dark Mode</a></li>
+      <li><a href="/login">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Simple Calculator</h1>
+  </header>
+
+  <!-- Calculator -->
+  <div class="calculator-container">
+    <input type="text" id="display" disabled />
+    <div class="button-container">
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="deleteLast()">DEL</button>
+      <button onclick="appendToDisplay('/')">/</button>
+      <button onclick="appendToDisplay('*')">*</button>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button onclick="appendToDisplay('-')">-</button>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button onclick="calculateResult()" class="equals">=</button>
+      <button onclick="appendToDisplay('0')">0</button>
+    </div>
+  </div>
+
+  <script>
+    function appendToDisplay(value) {
+      document.getElementById("display").value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById("display").value = '';
+    }
+
+    function deleteLast() {
+      const display = document.getElementById("display");
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculateResult() {
+      const display = document.getElementById("display");
+      try {
+        display.value = eval(display.value);
+      } catch (error) {
+        display.value = 'Error';
+      }
+    }
+
+    // Dark mode toggle functionality
+    document.getElementById("darkModeToggle").addEventListener("click", function (event) {
+            event.preventDefault(); 
+            document.body.classList.toggle("dark-mode"); 
+            document.querySelector("nav").classList.toggle("dark-mode"); 
+            
+            // Save user preference in localStorage
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        });
+
+        // Apply saved user preference on page load
+        window.onload = function () {
+            const theme = localStorage.getItem("theme");
+            if (theme === "dark") {
+                document.body.classList.add("dark-mode");
+                document.querySelector("nav").classList.add("dark-mode");
+            }
+        };
+
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Todo App. All rights reserved.</p>
+    <ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+    </ul>
+  </footer>
+</body>
+
+</html>
